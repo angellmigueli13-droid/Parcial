@@ -1,0 +1,58 @@
+INICIO
+    Crear cola de pacientes
+    Crear cola de urgencias
+    Crear lista de pacientes atendidos
+    
+    MIENTRAS sistema activo HACER
+        MOSTRAR menú de opciones
+        
+        SEGÚN opción SELECCIONADA HACER
+            CASO 1: Registrar nuevo paciente
+                LEER nombre, edad, motivo
+                SI motivo es urgencia ENTONCES
+                    ENCOLAR en cola de urgencias
+                SINO
+                    ENCOLAR en cola de pacientes
+                FIN SI
+                
+            CASO 2: Atender siguiente paciente
+                SI cola de urgencias NO está vacía ENTONCES
+                    paciente = DESENCOLAR cola de urgencias
+                SINO SI cola de pacientes NO está vacía ENTONCES
+                    paciente = DESENCOLAR cola de pacientes
+                SINO
+                    MOSTRAR "No hay pacientes esperando"
+                FIN SI
+                
+                SI paciente existe ENTONCES
+                    AGREGAR paciente a lista de atendidos
+                    MOSTRAR "Paciente atendido: " + paciente.nombre
+                FIN SI
+                
+            CASO 3: Ver siguiente paciente
+                SI cola de urgencias NO está vacía ENTONCES
+                    MOSTRAR frentecola de urgencias
+                SINO SI cola de pacientes NO está vacía ENTONCES
+                    MOSTRAR frentecola de pacientes
+                SINO
+                    MOSTRAR "No hay pacientes en espera"
+                FIN SI
+                
+            CASO 4: Mostrar cola de espera
+                MOSTRAR contenido cola de urgencias
+                MOSTRAR contenido cola de pacientes
+                
+            CASO 5: Paciente abandona
+                LEER posición del paciente
+                ELIMINAR paciente de la cola correspondiente
+                
+            CASO 6: Ver estadísticas
+                MOSTRAR número de pacientes en espera
+                MOSTRAR número de pacientes atendidos
+                MOSTRAR tiempo promedio de espera
+                
+            CASO 7: Salir
+                TERMINAR programa
+        FIN SEGÚN
+    FIN MIENTRAS
+FIN
