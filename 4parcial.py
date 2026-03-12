@@ -4,7 +4,7 @@ import random
 from datetime import datetime, timedelta
 
 class Paciente:
-    """Clase que representa a un paciente en el sistema"""
+  
     def __init__(self, nombre, edad, motivo_consulta, es_urgencia=False):
         self.nombre = nombre
         self.edad = edad
@@ -19,17 +19,17 @@ class Paciente:
         return f"ID: {self.id_paciente} | {self.nombre} ({self.edad} años) - {self.motivo_consulta}{urgencia_str}"
     
     def marcar_atencion(self):
-        """Marca la hora en que el paciente fue atendido"""
+       
         self.hora_atencion = datetime.now()
     
     def tiempo_espera(self):
-        """Calcula el tiempo de espera del paciente"""
+       
         if self.hora_atencion:
             return self.hora_atencion - self.hora_llegada
         return datetime.now() - self.hora_llegada
 
 class SistemaGestionTurnos:
-    """Sistema principal de gestión de turnos médicos"""
+   
     
     def __init__(self, nombre_clinica):
         self.nombre_clinica = nombre_clinica
@@ -39,7 +39,7 @@ class SistemaGestionTurnos:
         self.pacientes_abandonaron = []  # Lista de pacientes que se fueron
         
     def registrar_paciente(self, nombre, edad, motivo_consulta, es_urgencia=False):
-        """Registra un nuevo paciente en el sistema"""
+       
         paciente = Paciente(nombre, edad, motivo_consulta, es_urgencia)
         
         if es_urgencia:
@@ -52,7 +52,7 @@ class SistemaGestionTurnos:
         return paciente
     
     def atender_siguiente_paciente(self):
-        """Atiende al siguiente paciente en orden de prioridad"""
+       
         paciente = None
         
         # Prioridad: primero las urgencias, luego los normales
@@ -76,7 +76,7 @@ class SistemaGestionTurnos:
         return paciente
     
     def ver_siguiente_paciente(self):
-        """Muestra quién es el siguiente paciente sin atenderlo"""
+        
         if not self.cola_urgencias.empty():
             paciente = self.cola_urgencias.queue[0]
             print(f" Siguiente paciente con URGENCIA: {paciente}")
@@ -87,7 +87,7 @@ class SistemaGestionTurnos:
             print(" No hay pacientes en espera")
     
     def mostrar_cola_espera(self):
-        """Muestra todos los pacientes en espera"""
+       
         print("\n" + "="*60)
         print(f" COLA DE ESPERA - {self.nombre_clinica}")
         print("="*60)
@@ -112,7 +112,7 @@ class SistemaGestionTurnos:
         print("="*60)
     
     def paciente_abandona(self, tipo_cola, posicion):
-        """Permite que un paciente abandone la cola"""
+      
         if tipo_cola == "urgencia":
             if self.cola_urgencias.qsize() >= posicion:
                 temp_lista = list(self.cola_urgencias.queue)
@@ -148,7 +148,7 @@ class SistemaGestionTurnos:
         return False
     
     def mostrar_estadisticas(self):
-        """Muestra estadísticas del sistema"""
+      
         print("\n" + "="*50)
         print(" ESTADÍSTICAS DEL SISTEMA")
         print("="*50)
@@ -169,7 +169,7 @@ class SistemaGestionTurnos:
         print("="*50)
     
     def simular_dia_trabajo(self):
-        """Simula un día completo de trabajo en la clínica"""
+       
         print(" Iniciando simulación del día de trabajo...")
         
         # Registrar algunos pacientes de ejemplo
@@ -199,7 +199,7 @@ class SistemaGestionTurnos:
         self.mostrar_estadisticas()
 
 def menu_principal():
-    """Función principal con menú interactivo"""
+   
     sistema = SistemaGestionTurnos("Clínica Salud Integral")
     
     while True:
@@ -273,3 +273,4 @@ if __name__ == "__main__":
     print("Este sistema utiliza estructuras de datos lineales (colas) para")
     print("gestionar eficientemente la atención de pacientes en una clínica.")
     menu_principal()
+
